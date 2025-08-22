@@ -5,7 +5,7 @@
 
 [简体中文](README.md) | [English](doc/README-En.md)
 
-![Plugin Logo](doc\logo.jpg)
+ <img src="doc\logo.jpg" alt="Plugin Logo" style="zoom:50%;" />
 
 一个用于批量、手动修改 Zotero 条目数据的插件，帮助用户高效整理文献元数据。
 
@@ -22,7 +22,7 @@
 Zotero Normalize 提供以下核心功能：
 
 可多选条目进行批量处理，右键出现插件菜单：
-![Plugin Logo](doc\fig_zh.jpg)
+<img src="doc\fig_zh.jpg" alt="Plugin Logo" style="zoom:50%;" />
 
 ### 1️⃣ 作者栏错乱修改
 

@@ -5,7 +5,7 @@
 
 [简体中文](README.md) | [English](doc/README-En.md)
 
-![Plugin Logo](logo.jpg)
+  <img src="logo.jpg" alt="Plugin Logo" style="zoom:50%;" />
 
 A plugin for batch and manual modification of Zotero item data, helping users efficiently organize bibliographic metadata.
 
@@ -22,7 +22,7 @@ Additionally, this plugin supports users in customizing the display format of au
 Zotero Normalize provides the following core functions:
 
 Multi-select items for batch processing, with plugin menu appearing on right-click:
-![Plugin Logo](fig_en.jpg)
+<img src="fig_en.jpg" alt="Plugin Logo" style="zoom:50%;" />
 
 ### 1️⃣ Author Field Disorder Correction
 
@@ -41,12 +41,11 @@ Handles chaotic author name formatting issues with support for multiple operatio
   - Single-field mode uses the first space to separate last and first names by default; Chinese names automatically recognize common surnames for name separation
 
 - **1.3 Batch Modification of Authors on Same Line**
-  
   - Automatically recognizes and splits when all authors are on the same line
   - Requires selection of separator between authors on the same line
-  
+
   <img src="oneline.jpg" alt="Plugin Logo" style="zoom:50%;" />
-  
+
 - **1.4 Remove Hyphens from Names**
   - Recommended for use in dual-field mode
   - Single-field mode uses the last space to separate last and first names by default, with the front part being the first name
