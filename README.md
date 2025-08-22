@@ -11,7 +11,7 @@
 
 本插件旨在支持用户对Zotero条目数据进行批量手动修改，以提升文献元数据的整理效率。
 
-该插件开发初衷主要用于弥补自动修复功能的不足以及实现自定义规范化功能。推荐先使用Linter插件[![GitHub Repo stars](https://img.shields.io/github/stars/northword/zotero-format-metadata?label=zotero-format-metadata&style=flat-square)](https://github.com/northword/zotero-format-metadata)自动规范化条目，这能解决大部分条目规范化问题，但仍存在部分特殊情况：如所有作者位于同一行、作者姓名顺序颠倒等。此时，用户可通过本插件进行手动调整。若修改过程较为复杂，用户亦可直接输入文献全部作者信息，快速实现作者姓名及其顺序的规范化。
+该插件开发初衷主要用于弥补自动修复功能的不足以及实现自定义规范化功能。推荐先使用Linter插件[![GitHub Repo stars](https://img.shields.io/github/stars/northword/zotero-format-metadata?label=zotero-format-metadata&style=flat-square)](https://github.com/northword/zotero-format-metadata)自动规范化条目，这能解决大部分条目规范化问题。若自动修复后仍存在部分特殊情况：如所有作者位于同一行、作者姓名顺序颠倒等，此时用户可通过本插件进行手动调整。若修改过程较为复杂，用户亦可直接输入文献全部作者信息，快速实现作者姓名及其顺序的规范化。
 
 此外，该插件支持用户根据个人偏好自定义作者姓名的显示格式（单栏或双栏），从而更好地适配不同用户的阅读习惯。
 
