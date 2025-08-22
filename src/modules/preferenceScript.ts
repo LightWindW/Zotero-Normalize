@@ -4,39 +4,41 @@ import { getString } from "../utils/locale";
 export async function registerPrefsScripts(_window: Window) {
   // This function is called when the prefs window is opened
   // See addon/content/preferences.xhtml onpaneload
-  if (!addon.data.prefs) {
-    addon.data.prefs = {
-      window: _window,
-      columns: [
-        {
-          dataKey: "title",
-          label: getString("prefs-table-title"),
-          fixedWidth: true,
-          width: 100,
-        },
-        {
-          dataKey: "detail",
-          label: getString("prefs-table-detail"),
-        },
-      ],
-      rows: [
-        {
-          title: "Orange",
-          detail: "It's juicy",
-        },
-        {
-          title: "Banana",
-          detail: "It's sweet",
-        },
-        {
-          title: "Apple",
-          detail: "I mean the fruit APPLE",
-        },
-      ],
-    };
-  } else {
-    addon.data.prefs.window = _window;
-  }
+
+  //下面是一些文本，暂时不需要开发
+  // if (!addon.data.prefs) {
+  //   addon.data.prefs = {
+  //     window: _window,
+  //     columns: [
+  //       {
+  //         dataKey: "title",
+  //         label: getString("prefs-table-title"),
+  //         fixedWidth: true,
+  //         width: 100,
+  //       },
+  //       {
+  //         dataKey: "detail",
+  //         label: getString("prefs-table-detail"),
+  //       },
+  //     ],
+  //     rows: [
+  //       {
+  //         title: "Thanks",
+  //         detail: "for using Zotero Normalize",
+  //       },
+  //       // {
+  //       //   title: "Banana",
+  //       //   detail: "It's sweet",
+  //       // },
+  //       // {
+  //       //   title: "Apple",
+  //       //   detail: "I mean the fruit APPLE",
+  //       // },
+  //     ],
+  //   };
+  // } else {
+  //   addon.data.prefs.window = _window;
+  // }
   updatePrefsUI();
   bindPrefEvents();
 }

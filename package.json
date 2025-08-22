@@ -1,24 +1,24 @@
 {
-  "name": "zotero-plugin-template",
+  "name": "Zotero-Normalize",
   "type": "module",
-  "version": "3.1.0",
-  "description": "Zotero Plugin Template",
+  "version": "1.0.0",
+  "description": "Easily Normalize Format for Zotero Items",
   "config": {
-    "addonName": "Zotero Plugin Template",
-    "addonID": "addontemplate@euclpts.com",
-    "addonRef": "addontemplate",
-    "addonInstance": "AddonTemplate",
-    "prefsPrefix": "extensions.zotero.addontemplate"
+    "addonName": "Normalize",
+    "addonID": "Normalize@euclpts.com",
+    "addonRef": "Normalize",
+    "addonInstance": "Normalize",
+    "prefsPrefix": "extensions.zotero.Normalize"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/windingwind/zotero-plugin-template.git"
+    "url": "git+https://github.com/LightWindW/Zotero-Normalize.git"
   },
-  "author": "windingwind",
+  "author": "LightWindW",
   "bugs": {
-    "url": "https://github.com/windingwind/zotero-plugin-template/issues"
+    "url": "https://github.com/LightWindW/Zotero-Normalize/issues"
   },
-  "homepage": "https://github.com/windingwind/zotero-plugin-template#readme",
+  "homepage": "https://github.com/LightWindW/Zotero-Normalize#readme",
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "start": "zotero-plugin serve",

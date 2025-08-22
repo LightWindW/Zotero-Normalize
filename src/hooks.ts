@@ -1,13 +1,20 @@
-import {
-  BasicExampleFactory,
-  HelperExampleFactory,
-  KeyExampleFactory,
-  PromptExampleFactory,
-  UIExampleFactory,
-} from "./modules/examples";
+// import {
+//   BasicExampleFactory,
+//   HelperExampleFactory,
+//   KeyExampleFactory,
+//   PromptExampleFactory,
+//   UIExampleFactory,
+// } from "./modules/examples";
 import { getString, initLocale } from "./utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
+
+// Import the RMenu
+import { UIRMenu, InputFactory } from "./modules/RMenu";
+// // 在 onMainWindowLoad 中添加
+// import { initChineseNameDisplay } from "./modules/methods/Creator-zh-css";
+// // 在 onMainWindowUnload 中添加清理
+// import { stopChineseNameDisplay } from "./modules/methods/Creator-zh-css";
 
 async function onStartup() {
   await Promise.all([
@@ -18,21 +25,21 @@ async function onStartup() {
 
   initLocale();
 
-  BasicExampleFactory.registerPrefs();
+  // BasicExampleFactory.registerPrefs();
 
-  BasicExampleFactory.registerNotifier();
+  // BasicExampleFactory.registerNotifier();
 
-  KeyExampleFactory.registerShortcuts();
+  // KeyExampleFactory.registerShortcuts();
 
-  await UIExampleFactory.registerExtraColumn();
+  // await UIExampleFactory.registerExtraColumn();
 
-  await UIExampleFactory.registerExtraColumnWithCustomCell();
+  // await UIExampleFactory.registerExtraColumnWithCustomCell();
 
-  UIExampleFactory.registerItemPaneCustomInfoRow();
+  // UIExampleFactory.registerItemPaneCustomInfoRow();
 
-  UIExampleFactory.registerItemPaneSection();
+  // UIExampleFactory.registerItemPaneSection();
 
-  UIExampleFactory.registerReaderItemPaneSection();
+  // UIExampleFactory.registerReaderItemPaneSection();
 
   await Promise.all(
     Zotero.getMainWindows().map((win) => onMainWindowLoad(win)),
@@ -51,36 +58,46 @@ async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
     `${addon.data.config.addonRef}-mainWindow.ftl`,
   );
 
-  const popupWin = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
-    closeOnClick: true,
-    closeTime: -1,
-  })
-    .createLine({
-      text: getString("startup-begin"),
-      type: "default",
-      progress: 0,
-    })
-    .show();
+  // const popupWin = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
+  //   closeOnClick: true,
+  //   closeTime: -1,
+  // })
+  //   .createLine({
+  //     text: getString("startup-begin"),
+  //     type: "default",
+  //     progress: 0,
+  //   })
+  //   .show();
 
-  await Zotero.Promise.delay(1000);
-  popupWin.changeLine({
-    progress: 30,
-    text: `[30%] ${getString("startup-begin")}`,
-  });
+  // await Zotero.Promise.delay(1000);
+  // popupWin.changeLine({
+  //   progress: 30,
+  //   text: `[30%] ${getString("startup-begin")}`,
+  // });
 
-  UIExampleFactory.registerStyleSheet(win);
+  // UIExampleFactory.registerStyleSheet(win);
 
-  UIExampleFactory.registerRightClickMenuItem();
+  // UIExampleFactory.registerRightClickMenuItem();
 
-  UIExampleFactory.registerRightClickMenuPopup(win);
+  // UIExampleFactory.registerRightClickMenuPopup(win);
 
-  UIExampleFactory.registerWindowMenuWithSeparator();
+  // // 初始化中文姓名显示调整
+  // initChineseNameDisplay();
 
-  PromptExampleFactory.registerNormalCommandExample();
+  // Register the UIRMenu
+  // UIRMenu.registerStyleSheet(win);
 
-  PromptExampleFactory.registerAnonymousCommandExample(win);
+  // UIRMenu.registerRightClickMenuItem();
 
-  PromptExampleFactory.registerConditionalCommandExample();
+  UIRMenu.registerRightClickMenuPopup(win);
+
+  // UIExampleFactory.registerWindowMenuWithSeparator();
+
+  // PromptExampleFactory.registerNormalCommandExample();
+
+  // PromptExampleFactory.registerAnonymousCommandExample(win);
+
+  // PromptExampleFactory.registerConditionalCommandExample();
 
   await Zotero.Promise.delay(1000);
 
@@ -90,12 +107,14 @@ async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
   });
   popupWin.startCloseTimer(5000);
 
-  addon.hooks.onDialogEvents("dialogExample");
+  // addon.hooks.onDialogEvents("dialogExample");
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
   ztoolkit.unregisterAll();
   addon.data.dialog?.window?.close();
+
+  // stopChineseNameDisplay(); // 停止中文姓名显示监听
 }
 
 function onShutdown(): void {
@@ -111,24 +130,24 @@ function onShutdown(): void {
  * This function is just an example of dispatcher for Notify events.
  * Any operations should be placed in a function to keep this funcion clear.
  */
-async function onNotify(
-  event: string,
-  type: string,
-  ids: Array<string | number>,
-  extraData: { [key: string]: any },
-) {
-  // You can add your code to the corresponding notify type
-  ztoolkit.log("notify", event, type, ids, extraData);
-  if (
-    event == "select" &&
-    type == "tab" &&
-    extraData[ids[0]].type == "reader"
-  ) {
-    BasicExampleFactory.exampleNotifierCallback();
-  } else {
-    return;
-  }
-}
+// async function onNotify(
+//   event: string,
+//   type: string,
+//   ids: Array<string | number>,
+//   extraData: { [key: string]: any },
+// ) {
+//   // You can add your code to the corresponding notify type
+//   ztoolkit.log("notify", event, type, ids, extraData);
+//   if (
+//     event == "select" &&
+//     type == "tab" &&
+//     extraData[ids[0]].type == "reader"
+//   ) {
+//     BasicExampleFactory.exampleNotifierCallback();
+//   } else {
+//     return;
+//   }
+// }
 
 /**
  * This function is just an example of dispatcher for Preference UI events.
@@ -146,52 +165,64 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
   }
 }
 
-function onShortcuts(type: string) {
-  switch (type) {
-    case "larger":
-      KeyExampleFactory.exampleShortcutLargerCallback();
-      break;
-    case "smaller":
-      KeyExampleFactory.exampleShortcutSmallerCallback();
-      break;
-    default:
-      break;
-  }
-}
+// function onShortcuts(type: string) {
+//   switch (type) {
+//     case "larger":
+//       KeyExampleFactory.exampleShortcutLargerCallback();
+//       break;
+//     case "smaller":
+//       KeyExampleFactory.exampleShortcutSmallerCallback();
+//       break;
+//     default:
+//       break;
+//   }
+// }
 
-function onDialogEvents(type: string) {
-  switch (type) {
-    case "dialogExample":
-      HelperExampleFactory.dialogExample();
-      break;
-    case "clipboardExample":
-      HelperExampleFactory.clipboardExample();
-      break;
-    case "filePickerExample":
-      HelperExampleFactory.filePickerExample();
-      break;
-    case "progressWindowExample":
-      HelperExampleFactory.progressWindowExample();
-      break;
-    case "vtableExample":
-      HelperExampleFactory.vtableExample();
-      break;
-    default:
-      break;
-  }
-}
+// function onDialogEvents(type: string) {
+//   switch (type) {
+//     case "dialogExample":
+//       HelperExampleFactory.dialogExample();
+//       break;
+//     case "clipboardExample":
+//       HelperExampleFactory.clipboardExample();
+//       break;
+//     case "filePickerExample":
+//       HelperExampleFactory.filePickerExample();
+//       break;
+//     case "progressWindowExample":
+//       HelperExampleFactory.progressWindowExample();
+//       break;
+//     case "vtableExample":
+//       HelperExampleFactory.vtableExample();
+//       break;
+//     default:
+//       break;
+//   }
+// }
 
 // Add your hooks here. For element click, etc.
 // Keep in mind hooks only do dispatch. Don't add code that does real jobs in hooks.
 // Otherwise the code would be hard to read and maintain.
+function dialogCreatorInput(type: string) {
+  switch (type) {
+    case "dialogInput":
+      InputFactory.dialogInput();
+      break;
+    case "dialogOneLine":
+      InputFactory.dialogOneLine();
+      break;
+  }
+}
 
 export default {
   onStartup,
   onShutdown,
   onMainWindowLoad,
   onMainWindowUnload,
-  onNotify,
+  // onNotify,
   onPrefsEvent,
-  onShortcuts,
-  onDialogEvents,
+  // onShortcuts,
+  // onDialogEvents,
+
+  dialogCreatorInput,
 };
