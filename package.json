@@ -1,7 +1,7 @@
 {
   "name": "Zotero-Normalize",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.25.0",
   "description": "Easily Normalize Format for Zotero Items",
   "config": {
     "addonName": "Normalize",
