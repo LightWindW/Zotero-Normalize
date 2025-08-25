@@ -54,6 +54,7 @@ Handles chaotic author name formatting issues with support for multiple operatio
 - **1.5 Manual Input of Author Information**
   - When item authors are mostly missing or when the above adjustments are inconvenient, all authors can be manually input
   - Options for dual-field or single-field mode, with author input according to page prompts
+  - One item only
     <img src="input.jpg" alt="Plugin Logo" style="zoom:50%;" />
 
 ### 2️⃣ Batch Date Format Modification
