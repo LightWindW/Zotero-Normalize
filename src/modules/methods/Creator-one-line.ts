@@ -392,7 +392,7 @@ export async function CreatorOneLine(
   }
 
   // 刷新界面
-  Zotero.getActiveZoteroPane().itemsView.refreshAndMaintainSelection();
+  // Zotero.getActiveZoteroPane().itemsView.refreshAndMaintainSelection();
 
   ztoolkit.log(`处理完成，共更新 ${items.length} 个条目的作者信息`);
 }
