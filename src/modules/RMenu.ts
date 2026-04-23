@@ -1,5 +1,4 @@
-import { getLocaleID, getString } from "../utils/locale";
-import type { MenuitemOptions } from "zotero-plugin-toolkit";
+import { getString } from "../utils/locale";
 // import { isRegularItem } from "../utils/zotero";
 import { SwitchFLName } from "./methods/Creator-name-switch";
 import { separateNameEn } from "./methods/Creator-name-separate-en";
@@ -64,148 +63,216 @@ export class UIRMenu {
   // }
 
   @RMenu
-  static registerRightClickMenuPopup(win: Window) {
-    //registerRightClickMenuPopup是自己取的名字
+  static registerRightClickMenuPopup(_win: Window) {
     const menuIcon = `${rootURI}/content/icons/favicon.png`;
     const menuIconsepmerge = `${rootURI}/content/icons/sepMerge.png`;
     const menuIconswitchFL = `${rootURI}/content/icons/switchFL.png`;
     const menuIconOneLine = `${rootURI}/content/icons/oneLine.png`;
     const menuIconhyphen = `${rootURI}/content/icons/hyphen.png`;
     const menuIconinput = `${rootURI}/content/icons/input.png`;
-    ztoolkit.Menu.register(
-      "item", //目标菜单id
-      {
-        tag: "menu",
-        label: getString("menupopup-label"), //菜单上标签显示
-        icon: menuIcon,
-        children: [
-          //子菜单
-          {
-            //第一个子菜单
-            tag: "menu",
-            label: getString("menuitem-submenulabel-1"), //子菜单标签显示的文字
 
-            children: [
-              //子菜单的子菜单
-              {
-                tag: "menu",
-                label: getString("menuitem-submenulabel-1-1"), //子菜单的子菜单标签显示的文字
-                icon: menuIconsepmerge,
-                children: [
-                  {
-                    tag: "menuitem",
-                    label: getString("menuitem-submenulabel-1-1-1"),
-                    commandListener: mergeNameZh,
-                  },
-                  {
-                    tag: "menuitem",
-                    label: getString("menuitem-submenulabel-1-1-2"),
-                    commandListener: separateNameZh,
-                  },
-                  {
-                    tag: "menuseparator",
-                  },
-                  {
-                    tag: "menuitem",
-                    label: getString("menuitem-submenulabel-1-1-3"),
-                    commandListener: mergeNameEn,
-                  },
-                  {
-                    tag: "menuitem",
-                    label: getString("menuitem-submenulabel-1-1-4"),
-                    commandListener: separateNameEn,
-                  },
-                ],
+    const menuID = `${addon.data.config.addonRef}-context-menu`;
+
+    Zotero.MenuManager.registerMenu({
+      menuID,
+      pluginID: addon.data.config.addonID,
+      target: "main/library/item",
+      menus: [
+        {
+          menuType: "submenu",
+          icon: menuIcon,
+          onShowing: (event, context) => {
+            context.menuElem.setAttribute(
+              "label",
+              getString("menupopup-label"),
+            );
+          },
+          menus: [
+            {
+              menuType: "submenu",
+              onShowing: (event, context) => {
+                context.menuElem.setAttribute(
+                  "label",
+                  getString("menuitem-submenulabel-1"),
+                );
               },
-              {
-                tag: "menuitem",
-                label: getString("menuitem-submenulabel-1-2"),
-                commandListener: SwitchFLName,
-                icon: menuIconswitchFL,
-              },
-              {
-                tag: "menuitem",
-                label: getString("menuitem-submenulabel-1-3"),
-                commandListener: async (ev) => {
-                  const result = await InputFactory.dialogOneLine();
-                  if (result) {
-                    await CreatorOneLine(
-                      result.separatorType,
-                      result.columnType,
-                      result.inputValue,
+              menus: [
+                {
+                  menuType: "submenu",
+                  icon: menuIconsepmerge,
+                  onShowing: (event, context) => {
+                    context.menuElem.setAttribute(
+                      "label",
+                      getString("menuitem-submenulabel-1-1"),
                     );
-                  }
+                  },
+                  menus: [
+                    {
+                      menuType: "menuitem",
+                      onShowing: (event, context) => {
+                        context.menuElem.setAttribute(
+                          "label",
+                          getString("menuitem-submenulabel-1-1-1"),
+                        );
+                      },
+                      onCommand: () => mergeNameZh(),
+                    },
+                    {
+                      menuType: "menuitem",
+                      onShowing: (event, context) => {
+                        context.menuElem.setAttribute(
+                          "label",
+                          getString("menuitem-submenulabel-1-1-2"),
+                        );
+                      },
+                      onCommand: () => separateNameZh(),
+                    },
+                    {
+                      menuType: "separator",
+                    },
+                    {
+                      menuType: "menuitem",
+                      onShowing: (event, context) => {
+                        context.menuElem.setAttribute(
+                          "label",
+                          getString("menuitem-submenulabel-1-1-3"),
+                        );
+                      },
+                      onCommand: () => mergeNameEn(),
+                    },
+                    {
+                      menuType: "menuitem",
+                      onShowing: (event, context) => {
+                        context.menuElem.setAttribute(
+                          "label",
+                          getString("menuitem-submenulabel-1-1-4"),
+                        );
+                      },
+                      onCommand: () => separateNameEn(),
+                    },
+                  ],
                 },
-                icon: menuIconOneLine,
-              },
-              {
-                tag: "menuitem",
-                label: getString("menuitem-submenulabel-1-4"),
-                commandListener: CreatorHyphen,
-                icon: menuIconhyphen,
-              },
-              {
-                tag: "menuseparator",
-              },
-              {
-                tag: "menuitem",
-                label: getString("menuitem-submenulabel-1-5"),
-                commandListener: async (ev) => {
-                  const result = await InputFactory.dialogInput();
-                  if (result) {
-                    await CreatorInput(
-                      result.columnType,
-                      result.languageType,
-                      result.inputValue,
+                {
+                  menuType: "menuitem",
+                  icon: menuIconswitchFL,
+                  onShowing: (event, context) => {
+                    context.menuElem.setAttribute(
+                      "label",
+                      getString("menuitem-submenulabel-1-2"),
                     );
-                  }
+                  },
+                  onCommand: () => SwitchFLName(),
                 },
-
-                icon: menuIconinput,
+                {
+                  menuType: "menuitem",
+                  icon: menuIconOneLine,
+                  onShowing: (event, context) => {
+                    context.menuElem.setAttribute(
+                      "label",
+                      getString("menuitem-submenulabel-1-3"),
+                    );
+                  },
+                  onCommand: async () => {
+                    const result = await InputFactory.dialogOneLine();
+                    if (result) {
+                      await CreatorOneLine(
+                        result.separatorType,
+                        result.columnType,
+                        result.inputValue,
+                      );
+                    }
+                  },
+                },
+                {
+                  menuType: "menuitem",
+                  icon: menuIconhyphen,
+                  onShowing: (event, context) => {
+                    context.menuElem.setAttribute(
+                      "label",
+                      getString("menuitem-submenulabel-1-4"),
+                    );
+                  },
+                  onCommand: () => CreatorHyphen(),
+                },
+                {
+                  menuType: "separator",
+                },
+                {
+                  menuType: "menuitem",
+                  icon: menuIconinput,
+                  onShowing: (event, context) => {
+                    context.menuElem.setAttribute(
+                      "label",
+                      getString("menuitem-submenulabel-1-5"),
+                    );
+                  },
+                  onCommand: async () => {
+                    const result = await InputFactory.dialogInput();
+                    if (result) {
+                      await CreatorInput(
+                        result.columnType,
+                        result.languageType,
+                        result.inputValue,
+                      );
+                    }
+                  },
+                },
+              ],
+            },
+            {
+              menuType: "menuitem",
+              onShowing: (event, context) => {
+                context.menuElem.setAttribute(
+                  "label",
+                  getString("menuitem-submenulabel-2"),
+                );
               },
-            ],
-          },
-          {
-            tag: "menuitem",
-            label: getString("menuitem-submenulabel-2"),
-            commandListener: DateISO, // 更新 Date 字段
-          },
-
-          {
-            tag: "menuitem",
-            label: getString("menuitem-submenulabel-3"),
-            commandListener: async (ev) => {
-              const result = await InputFactory.dialoglanguage();
-              if (result) {
-                await LanguageInput(result.languageType, result.inputValue);
-              }
+              onCommand: () => DateISO(),
             },
-          },
-
-          {
-            tag: "menuitem",
-            label: getString("menuitem-submenulabel-4"),
-            commandListener: ExtraClean, // 清空 Extra 字段
-          },
-          {
-            tag: "menuseparator",
-          },
-          {
-            tag: "menuitem",
-            label: getString("menuitem-submenulabel-5"),
-            commandListener: async (ev) => {
-              await InputFactory.dialoghelp();
+            {
+              menuType: "menuitem",
+              onShowing: (event, context) => {
+                context.menuElem.setAttribute(
+                  "label",
+                  getString("menuitem-submenulabel-3"),
+                );
+              },
+              onCommand: async () => {
+                const result = await InputFactory.dialoglanguage();
+                if (result) {
+                  await LanguageInput(result.languageType, result.inputValue);
+                }
+              },
             },
-          },
-        ],
-      },
-
-      //这个会强制在itemmenu-addontemplate-test前面，需要注释
-      // "before",
-      // win.document?.querySelector(
-      //   "#zotero-itemmenu-addontemplate-test",
-      // ) as XUL.MenuItem,
-    );
+            {
+              menuType: "menuitem",
+              onShowing: (event, context) => {
+                context.menuElem.setAttribute(
+                  "label",
+                  getString("menuitem-submenulabel-4"),
+                );
+              },
+              onCommand: () => ExtraClean(),
+            },
+            {
+              menuType: "separator",
+            },
+            {
+              menuType: "menuitem",
+              onShowing: (event, context) => {
+                context.menuElem.setAttribute(
+                  "label",
+                  getString("menuitem-submenulabel-5"),
+                );
+              },
+              onCommand: async () => {
+                await InputFactory.dialoghelp();
+              },
+            },
+          ],
+        },
+      ],
+    });
   }
 }
 

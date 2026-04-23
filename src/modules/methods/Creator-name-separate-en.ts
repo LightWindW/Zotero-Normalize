@@ -6,7 +6,7 @@ export function separateNameEn() {
     if (!item.isRegularItem()) continue;
 
     const creators = item.getCreators();
-    const newCreators: Zotero.Creator[] = [];
+    const newCreators: _ZoteroTypes.Item.Creator[] = [];
 
     for (const creator of creators) {
       // 仅处理 single field 作者（fieldMode = 1）

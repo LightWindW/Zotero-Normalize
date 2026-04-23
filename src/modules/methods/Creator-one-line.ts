@@ -357,7 +357,7 @@ export async function CreatorOneLine(
         // 单栏模式：直接放入 lastName，不管是中文还是英文
         return {
           lastName: authorPart,
-          creatorType: "author",
+          creatorType: "author" as any,
           fieldMode: 1,
         };
       } else {
@@ -369,7 +369,7 @@ export async function CreatorOneLine(
           return {
             firstName: firstName,
             lastName: lastName,
-            creatorType: "author",
+            creatorType: "author" as any,
             fieldMode: 0,
           };
         } else {
@@ -379,7 +379,7 @@ export async function CreatorOneLine(
           return {
             firstName: firstName,
             lastName: lastName,
-            creatorType: "author",
+            creatorType: "author" as any,
             fieldMode: 0,
           };
         }

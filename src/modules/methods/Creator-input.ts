@@ -149,7 +149,7 @@ export async function CreatorInput(
         // 中文单栏：直接把姓名放入 lastName
         return {
           lastName: line.replace(/\s+/g, ""), // 删除空格
-          creatorType: "author",
+          creatorType: "author" as any,
           fieldMode: 1,
         };
       } else {
@@ -186,7 +186,7 @@ export async function CreatorInput(
         return {
           firstName: firstName,
           lastName: lastName,
-          creatorType: "author",
+          creatorType: "author" as any,
           fieldMode: 0,
         };
       }
@@ -196,7 +196,7 @@ export async function CreatorInput(
         // 英文单栏：直接存储完整姓名
         return {
           lastName: line,
-          creatorType: "author",
+          creatorType: "author" as any,
           fieldMode: 1,
         };
       } else {
@@ -226,7 +226,7 @@ export async function CreatorInput(
         return {
           firstName: firstName,
           lastName: lastName,
-          creatorType: "author",
+          creatorType: "author" as any,
           fieldMode: 0,
         };
       }

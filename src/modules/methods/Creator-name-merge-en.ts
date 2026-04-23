@@ -6,11 +6,7 @@ export function mergeNameEn() {
     if (!item.isRegularItem()) continue;
 
     const creators = item.getCreators();
-    const newCreators: {
-      creatorTypeID: number;
-      lastName: string;
-      fieldMode: number;
-    }[] = [];
+    const newCreators: _ZoteroTypes.Item.Creator[] = [];
 
     for (const creator of creators) {
       // 将名放在姓前面进行合并
@@ -21,6 +17,7 @@ export function mergeNameEn() {
 
       newCreators.push({
         creatorTypeID: creator.creatorTypeID, // 保持原有的作者类型ID
+        firstName: "",
         lastName: fullName, // 合并后的全名存储在 lastName 字段
         fieldMode: 1, // 1 = 单栏模式（将合并的姓名存储在一个字段中）
       });

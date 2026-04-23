@@ -345,7 +345,7 @@ export function SwitchFLName() {
     if (!item.isRegularItem()) continue;
 
     const creators = item.getCreators();
-    const newCreators: Zotero.Creator[] = [];
+    const newCreators: _ZoteroTypes.Item.Creator[] = [];
 
     for (const creator of creators) {
       if (creator.fieldMode === 1) {
@@ -359,6 +359,7 @@ export function SwitchFLName() {
 
             newCreators.push({
               creatorTypeID: creator.creatorTypeID,
+              firstName: "",
               lastName: switchedName,
               fieldMode: 1,
             });
@@ -381,6 +382,7 @@ export function SwitchFLName() {
 
             newCreators.push({
               creatorTypeID: creator.creatorTypeID,
+              firstName: "",
               lastName: switchedName,
               fieldMode: 1,
             });

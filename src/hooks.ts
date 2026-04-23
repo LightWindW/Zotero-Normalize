@@ -58,16 +58,16 @@ async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
     `${addon.data.config.addonRef}-mainWindow.ftl`,
   );
 
-  // const popupWin = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
-  //   closeOnClick: true,
-  //   closeTime: -1,
-  // })
-  //   .createLine({
-  //     text: getString("startup-begin"),
-  //     type: "default",
-  //     progress: 0,
-  //   })
-  //   .show();
+  const popupWin = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
+    closeOnClick: true,
+    closeTime: -1,
+  })
+    .createLine({
+      text: getString("startup-begin"),
+      type: "default",
+      progress: 0,
+    })
+    .show();
 
   // await Zotero.Promise.delay(1000);
   // popupWin.changeLine({
@@ -99,7 +99,7 @@ async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
 
   // PromptExampleFactory.registerConditionalCommandExample();
 
-  await Zotero.Promise.delay(1000);
+  await new Promise((r) => setTimeout(r, 1000));
 
   popupWin.changeLine({
     progress: 100,
@@ -120,6 +120,10 @@ async function onMainWindowUnload(win: Window): Promise<void> {
 function onShutdown(): void {
   ztoolkit.unregisterAll();
   addon.data.dialog?.window?.close();
+  // Unregister MenuManager menu
+  Zotero.MenuManager.unregisterMenu(
+    `${addon.data.config.addonRef}-context-menu`,
+  );
   // Remove addon object
   addon.data.alive = false;
   // @ts-expect-error - Plugin instance is not typed

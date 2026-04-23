@@ -15,7 +15,7 @@ export async function ExtraClean() {
   }
 
   // 刷新界面
-  Zotero.getActiveZoteroPane().itemsView.refreshAndMaintainSelection();
+  (Zotero.getActiveZoteroPane().itemsView as any).refreshAndMaintainSelection();
 
   // ztoolkit.log(`处理完成，共更新 ${items.length} 个条目的 Extra 字段`);
 }

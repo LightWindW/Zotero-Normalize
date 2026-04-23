@@ -319,7 +319,7 @@ export class UIExampleFactory {
         setSectionButtonStatus,
       }) => {
         ztoolkit.log("Section secondary render start!", item?.id);
-        await Zotero.Promise.delay(1000);
+        await new Promise((r) => setTimeout(r, 1000));
         ztoolkit.log("Section secondary render finish!", item?.id);
         const title = body.querySelector("#test") as HTMLElement;
         title.style.color = "green";
