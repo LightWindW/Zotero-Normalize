@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__vibe_kanban__list_issues",
+      "mcp__vibe_kanban__list_organizations",
+      "mcp__vibe_kanban__list_projects",
+      "mcp__vibe_kanban__get_execution",
+      "mcp__vibe_kanban__delete_workspace",
+      "mcp__vibe_kanban__delete_issue",
+      "Read(//c/Users/antas/.claude/skills/code-review-expert/references/**)",
+      "Read(//c/Users/antas/.agents/skills/code-review-expert/references/**)",
+      "Bash(cd d:/Public/Zotero-Normalize && rm -f src/modules/examples.ts src/utils/prefs.ts src/utils/window.ts)",
+      "Bash(npm run *)"
+    ],
+    "additionalDirectories": [
+      "d:\\Public\\Zotero-Normalize\\src\\modules"
+    ]
+  }
+}

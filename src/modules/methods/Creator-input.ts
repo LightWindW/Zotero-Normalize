@@ -1,3 +1,5 @@
+import { COMPOUND_SURNAMES } from "../../utils/chinese-names";
+
 export async function CreatorInput(
   columnType: string,
   languageType: string,
@@ -11,90 +13,6 @@ export async function CreatorInput(
   }
   const item = items[0];
   if (!item.isRegularItem()) return;
-
-  // 常见的中文复姓列表
-  const compoundSurnames = [
-    "欧阳",
-    "太史",
-    "端木",
-    "上官",
-    "司马",
-    "东方",
-    "独孤",
-    "南宫",
-    "万俟",
-    "闻人",
-    "夏侯",
-    "诸葛",
-    "尉迟",
-    "公羊",
-    "赫连",
-    "澹台",
-    "皇甫",
-    "宗政",
-    "濮阳",
-    "公冶",
-    "太叔",
-    "申屠",
-    "公孙",
-    "慕容",
-    "仲孙",
-    "钟离",
-    "长孙",
-    "宇文",
-    "司徒",
-    "鲜于",
-    "司空",
-    "闾丘",
-    "子车",
-    "亓官",
-    "司寇",
-    "巫马",
-    "公西",
-    "颛孙",
-    "壤驷",
-    "公良",
-    "漆雕",
-    "乐正",
-    "宰父",
-    "谷梁",
-    "拓跋",
-    "夹谷",
-    "轩辕",
-    "令狐",
-    "段干",
-    "百里",
-    "呼延",
-    "东郭",
-    "南门",
-    "羊舌",
-    "微生",
-    "公户",
-    "公玉",
-    "公仪",
-    "梁丘",
-    "公仲",
-    "公上",
-    "公门",
-    "公山",
-    "公坚",
-    "左丘",
-    "公伯",
-    "西门",
-    "公祖",
-    "第五",
-    "公乘",
-    "贯丘",
-    "公皙",
-    "南荣",
-    "东里",
-    "海西",
-    "淳于",
-    "单于",
-    "田丘",
-    "公羽",
-    "锺离",
-  ];
 
   /**
    * 检测字符串是否为中文
@@ -129,12 +47,8 @@ export async function CreatorInput(
 
   if (isChinese(firstLine)) {
     detectedLanguage = "zh";
-    // 设置条目语言为中文
-    item.setField("language", "zh");
   } else if (isEnglish(firstLine)) {
     detectedLanguage = "en";
-    // 保持传入的 languageType，或默认设置为 en
-    item.setField("language", "en");
   } else {
     Zotero.alert(Zotero.getMainWindow(), "提示", "无法识别输入的语言类型！");
     return;
@@ -149,7 +63,7 @@ export async function CreatorInput(
         // 中文单栏：直接把姓名放入 lastName
         return {
           lastName: line.replace(/\s+/g, ""), // 删除空格
-          creatorType: "author" as any,
+          creatorType: "author",
           fieldMode: 1,
         };
       } else {
@@ -169,7 +83,7 @@ export async function CreatorInput(
 
           if (cleanName.length >= 2) {
             const firstTwoChars = cleanName.substring(0, 2);
-            if (compoundSurnames.includes(firstTwoChars)) {
+            if (COMPOUND_SURNAMES.includes(firstTwoChars)) {
               lastName = firstTwoChars;
               firstName = cleanName.substring(2);
               isCompoundSurname = true;
@@ -186,7 +100,7 @@ export async function CreatorInput(
         return {
           firstName: firstName,
           lastName: lastName,
-          creatorType: "author" as any,
+          creatorType: "author",
           fieldMode: 0,
         };
       }
@@ -196,7 +110,7 @@ export async function CreatorInput(
         // 英文单栏：直接存储完整姓名
         return {
           lastName: line,
-          creatorType: "author" as any,
+          creatorType: "author",
           fieldMode: 1,
         };
       } else {
@@ -209,12 +123,12 @@ export async function CreatorInput(
           // 只有一个词，默认作为姓
           lastName = nameParts[0];
           firstName = "";
-        } else if (languageType === "1") {
-          // languageType = 1：姓在前，名在后（第一个空格分隔）
+        } else if (languageType === "surname-first") {
+          // 姓在前，名在后（第一个空格分隔）
           lastName = nameParts[0]; // 第一个词作为姓
           firstName = nameParts.slice(1).join(" "); // 后面所有词作为名
-        } else if (languageType === "2") {
-          // languageType = 2：名在前，姓在后（最后一个空格分隔）
+        } else if (languageType === "given-first") {
+          // 名在前，姓在后（最后一个空格分隔）
           lastName = nameParts.pop()!; // 最后一个词作为姓
           firstName = nameParts.join(" "); // 前面所有词作为名
         } else {
@@ -226,14 +140,15 @@ export async function CreatorInput(
         return {
           firstName: firstName,
           lastName: lastName,
-          creatorType: "author" as any,
+          creatorType: "author",
           fieldMode: 0,
         };
       }
     }
   });
 
-  item.setCreators(creators);
+  item.setCreators(creators as any);
+  item.setField("language", detectedLanguage);
   await item.saveTx();
 
   ztoolkit.log(

@@ -25,10 +25,8 @@ export async function CreatorHyphen() {
           hasChanges = true;
         }
 
-        // if (creator.lastName && creator.lastName.includes("-")) {
-        //   newCreator.lastName = creator.lastName.replace(/-/g, "");
-        //   hasChanges = true;
-        // }
+        // 不处理 lastName 中的连字符：学术语境下姓氏含连字符是常见拼写
+        //（如 O'Connor、Jean-Paul），删除会破坏姓氏正确性
 
         return newCreator;
       } else if (creator.fieldMode === 1) {

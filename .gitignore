@@ -14,3 +14,8 @@ tsconfig.tsbuildinfo
 .scaffold
 build
 logs
+
+# Claude Code review reports
+Claude-review.md
+mine-w.md
+Claude-review.md

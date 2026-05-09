@@ -1,1 +1,17 @@
-{"defaultHandlersVersion":{},"mimeTypes":{},"schemes":{"mailto":{"stubEntry":true,"handlers":[null,{"name":"Gmail","uriTemplate":"https://mail.google.com/mail/?extsrc=mailto&url=%s"}]}},"isDownloadsImprovementsAlreadyMigrated":false}
+{
+  "defaultHandlersVersion": {},
+  "mimeTypes": {},
+  "schemes": {
+    "mailto": {
+      "stubEntry": true,
+      "handlers": [
+        null,
+        {
+          "name": "Gmail",
+          "uriTemplate": "https://mail.google.com/mail/?extsrc=mailto&url=%s"
+        }
+      ]
+    }
+  },
+  "isDownloadsImprovementsAlreadyMigrated": false
+}

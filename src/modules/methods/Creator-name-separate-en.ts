@@ -1,4 +1,4 @@
-export function separateNameEn() {
+export async function separateNameEn() {
   // 获取当前选中的条目
   const items = Zotero.getActiveZoteroPane().getSelectedItems();
 
@@ -38,6 +38,6 @@ export function separateNameEn() {
     }
 
     item.setCreators(newCreators);
-    item.saveTx();
+    await item.saveTx();
   }
 }

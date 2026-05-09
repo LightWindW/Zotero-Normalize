@@ -10,16 +10,28 @@
 // - set it within a user.js file in your profile.
 
 user_pref("app.update.enabled", false);
-user_pref("app.update.lastUpdateTime.addon-background-update-timer", 1753968649);
+user_pref(
+  "app.update.lastUpdateTime.addon-background-update-timer",
+  1753968649,
+);
 user_pref("app.update.lastUpdateTime.background-update-timer", 1753970919);
 user_pref("app.update.lastUpdateTime.xpi-signature-verification", 1753968649);
 user_pref("app.update.migrated.updateDir3.DBF427A430B95848", true);
 user_pref("browser.dom.window.dump.enabled", true);
 user_pref("browser.launcherProcess.enabled", true);
 user_pref("browser.reader.detectedFirstArticle", true);
-user_pref("browser.safebrowsing.provider.0.gethashURL", "http://localhost/safebrowsing-dummy/gethash");
-user_pref("browser.safebrowsing.provider.0.keyURL", "http://localhost/safebrowsing-dummy/newkey");
-user_pref("browser.safebrowsing.provider.0.updateURL", "http://localhost/safebrowsing-dummy/update");
+user_pref(
+  "browser.safebrowsing.provider.0.gethashURL",
+  "http://localhost/safebrowsing-dummy/gethash",
+);
+user_pref(
+  "browser.safebrowsing.provider.0.keyURL",
+  "http://localhost/safebrowsing-dummy/newkey",
+);
+user_pref(
+  "browser.safebrowsing.provider.0.updateURL",
+  "http://localhost/safebrowsing-dummy/update",
+);
 user_pref("browser.selfsupport.url", "https://localhost/selfrepair");
 user_pref("browser.sessionstore.resume_from_crash", false);
 user_pref("browser.startup.homepage", "about:blank");
@@ -50,7 +62,7 @@ user_pref("extensions.lastAppBuildId", "20250724162348");
 user_pref("extensions.lastAppVersion", "7.1-beta.48+735922a2b");
 user_pref("extensions.lastPlatformVersion", "128.9.0");
 user_pref("extensions.signatureCheckpoint", 1);
-user_pref("extensions.systemAddonSet", "{\"schema\":1,\"addons\":{}}");
+user_pref("extensions.systemAddonSet", '{"schema":1,"addons":{}}');
 user_pref("extensions.update.enabled", false);
 user_pref("extensions.update.notifyUser", false);
 user_pref("extensions.zotero.firstRun.skipFirefoxProfileAccessCheck", true);
@@ -70,7 +82,10 @@ user_pref("gfx-shader-check.driver-version", "32.0.101.6129");
 user_pref("gfx-shader-check.ptr-size", 8);
 user_pref("idle.lastDailyNotification", 1753884285);
 user_pref("media.hardware-video-decoding.failed", true);
-user_pref("privacy.bounceTrackingProtection.hasMigratedUserActivationData", true);
+user_pref(
+  "privacy.bounceTrackingProtection.hasMigratedUserActivationData",
+  true,
+);
 user_pref("privacy.purge_trackers.date_in_cookie_database", "0");
 user_pref("privacy.purge_trackers.last_purge", "1753884285186");
 user_pref("sanity-test.device-id", "0x9a49");

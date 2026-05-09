@@ -14,8 +14,6 @@ export async function ExtraClean() {
     await item.saveTx();
   }
 
-  // 刷新界面
-  (Zotero.getActiveZoteroPane().itemsView as any).refreshAndMaintainSelection();
-
-  // ztoolkit.log(`处理完成，共更新 ${items.length} 个条目的 Extra 字段`);
+  // Zotero 8/9 中 itemsView.refreshAndMaintainSelection 已不存在，
+  // saveTx() 触发的 Notifier 会自动刷新界面
 }

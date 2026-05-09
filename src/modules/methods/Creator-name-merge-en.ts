@@ -1,4 +1,4 @@
-export function mergeNameEn() {
+export async function mergeNameEn() {
   // 获取当前选中的条目
   const items = Zotero.getActiveZoteroPane().getSelectedItems();
 
@@ -9,11 +9,16 @@ export function mergeNameEn() {
     const newCreators: _ZoteroTypes.Item.Creator[] = [];
 
     for (const creator of creators) {
-      // 将名放在姓前面进行合并
-      const fullName =
-        creator.firstName && creator.firstName.trim()
-          ? `${creator.firstName.trim()} ${creator.lastName.trim()}` // 名 + 空格 + 姓
-          : creator.lastName.trim(); // 如果没有名，只保留姓
+      // 已经是单栏，直接保留（防御性分支，避免把 lastName 当姓再次合并）
+      if (creator.fieldMode === 1) {
+        newCreators.push(creator);
+        continue;
+      }
+
+      const firstName = (creator.firstName ?? "").trim();
+      const lastName = (creator.lastName ?? "").trim();
+      // 名 + 空格 + 姓；若无 firstName 则只保留 lastName
+      const fullName = firstName ? `${firstName} ${lastName}` : lastName;
 
       newCreators.push({
         creatorTypeID: creator.creatorTypeID, // 保持原有的作者类型ID
@@ -24,6 +29,6 @@ export function mergeNameEn() {
     }
 
     item.setCreators(newCreators); // 设置新的作者列表
-    item.saveTx(); // 保存条目更改
+    await item.saveTx(); // 保存条目更改
   }
 }
