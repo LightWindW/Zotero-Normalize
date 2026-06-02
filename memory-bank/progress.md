@@ -51,6 +51,13 @@
 - [x] `skipCount` 统计无效日期
 - [x] 循环结束后 `ProgressWindow` 显示：已更新 / 无日期 / 跳过
 
+### 弹窗中英文自动切换（2026-05-09）n- [x] 在 `addon/locale/en-US/addon.ftl` 和 `zh-CN/addon.ftl` 中新增 22 个弹窗本地化键
+- [x] 重构 `dialogInput.ts` — 导入 `getString`，替换 14 处硬编码中文
+- [x] 重构 `dialogOneLine.ts` — 导入 `getString`，替换 13 处硬编码中文
+- [x] `typings/i10n.d.ts` 由 `zotero-plugin-scaffold` 自动生成，包含全部新键
+- [x] `npm run build` 通过（0.588s，无 TS 错误）
+- [x] **dialogHelp.ts** — 新增 4 个 FTL 键（`dialog-help-title` / `dialog-help-heading` / `dialog-help-content` / `dialog-close`），替换全部硬编码中文，build 通过（0.164s）
+
 ### P2 修复（2026-05-08）
 - [x] **D1** 清理模板代码：删除 hooks.ts 被注释代码（24+ 行）、删除 `examples.ts`、`prefs.ts`、`window.ts`
 - [x] **D2** Creator-hyphen.ts 加注释说明（姓中连字符不删除）；Extra-clean.ts 移除 `refreshAndMaintainSelection`（Zotero 8/9 已不存在）
@@ -61,6 +68,14 @@
 
 ### 验证
 - [x] `npm run build` 通过，无 TypeScript 错误（0.166s）
+
+## 2026-05-31: 移除启动时 ProgressWindow 提示
+
+- [x] 删除 `src/hooks.ts` 中 `onMainWindowLoad` 的 ProgressWindow 弹窗逻辑（第39-58行）
+- [x] 删除 `addon/locale/zh-CN/addon.ftl` 中的 `startup-begin` / `startup-finish` 键
+- [x] 删除 `addon/locale/en-US/addon.ftl` 中的 `startup-begin` / `startup-finish` 键
+- [x] `typings/i10n.d.ts` 为自动生成文件，未手动修改，下次 build 会自动同步
+- [x] `npm run build` 通过（0.652s，无 TS 错误）
 
 ## 待验证
 

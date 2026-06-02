@@ -1,3 +1,5 @@
+import { getString } from "../../utils/locale";
+
 export async function DateISO() {
   const items =
     Zotero.getActiveZoteroPane().getSelectedItems() as Zotero.Item[];
@@ -139,18 +141,20 @@ export async function DateISO() {
   }
 
   // 使用 ProgressWindow 反馈结果
-  new ztoolkit.ProgressWindow("日期格式化完成", {
+  new ztoolkit.ProgressWindow(getString("date-iso-title"), {
     closeOnClick: true,
     closeTime: -1,
   })
     .createLine({
-      text: `已更新 ${updatedCount} 个条目，无日期 ${noDateCount} 个，跳过 ${skipCount} 个`,
+      text: getString("date-iso-result", {
+        args: { updated: updatedCount, noDate: noDateCount, skipped: skipCount },
+      }),
       type: "success",
       progress: 100,
     })
     .show();
 
   ztoolkit.log(
-    `日期ISO格式化完成，共更新 ${updatedCount} 个条目，无日期 ${noDateCount} 个，跳过 ${skipCount} 个`,
+    `Date-ISO done: updated=${updatedCount}, noDate=${noDateCount}, skipped=${skipCount}`,
   );
 }

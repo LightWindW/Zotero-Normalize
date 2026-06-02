@@ -93,13 +93,8 @@ export async function CreatorOneLine(
     separator = inputValue.trim();
   }
 
-  // 校验用户输入：必须有内容才能进行"一行修改"
+  // 用户取消或无输入则直接返回
   if (!inputValue || !inputValue.trim()) {
-    Zotero.alert(
-      Zotero.getMainWindow(),
-      "提示",
-      "请在输入框中填写作者，并使用所选分隔符隔开！",
-    );
     return;
   }
 

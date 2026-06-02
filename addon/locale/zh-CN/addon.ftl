@@ -1,5 +1,3 @@
-startup-begin = 插件加载中
-startup-finish = 插件已就绪
 menuitem-label = 插件模板: 帮助工具样例
 menupopup-label = Normalize
 menuitem-submenulabel = 插件模板：子菜单
@@ -29,3 +27,43 @@ prefs-table-title = 标题
 prefs-table-detail = 详情
 tabpanel-lib-tab-label = 库标签
 tabpanel-reader-tab-label = 阅读器标签
+
+# 弹窗：手动输入作者
+dialog-input-title = 手动输入作者名
+dialog-input-column = 选择单/双栏
+dialog-input-column-single = 单栏：姓名合并
+dialog-input-column-double = 双栏：姓名分开
+dialog-input-name-order = 选择姓名前后关系
+dialog-input-name-order-note = 注：中文姓名可忽略此选项，英文姓名需要明确姓名前后关系
+dialog-input-surname-first = 姓+名（姓前名后）
+dialog-input-given-first = 名+姓（名前姓后）
+dialog-input-enter-authors = 手动输入所有作者
+dialog-input-enter-authors-hint = 中文姓名不用分隔，英文姓和名之间用 空格 分隔<br>不同行分隔不同作者
+dialog-input-placeholder = 输入作者...
+
+# 弹窗：所有作者在一行修改
+dialog-oneline-title = 所有作者在一行修改
+dialog-oneline-separator = 选择作者分隔符
+dialog-oneline-separator-comma = 半角逗号 ,
+dialog-oneline-separator-semicolon = 半角分号 ;
+dialog-oneline-separator-comma-fw = 全角逗号 ，
+dialog-oneline-separator-semicolon-fw = 全角分号 ；
+dialog-oneline-separator-other = 其他：
+dialog-oneline-column = 选择单/双栏
+dialog-oneline-column-single = 单栏：姓名合并
+dialog-oneline-column-double = 双栏：姓名分开
+
+# 通用弹窗按钮
+dialog-confirm = 确认
+dialog-cancel = 取消
+
+# 弹窗：帮助说明
+dialog-help-title = Normalize 使用说明
+dialog-help-heading = 使用说明
+dialog-help-content = 插件功能旨在实现批量、手动修改条目数据。请注意Zotero作者双栏格式为姓+名，单栏模式为名+空格+姓。<br><br>功能包括：<br><br>-1. 作者栏错乱修改<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.1 作者姓名拆分合并<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 请针对中文英文文献选择使用不同的处理方式<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;双栏模式姓前名后，单栏模式在中文里保持了姓前名后的阅读习惯，英文里保持名前姓后阅读习惯<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.2 交换作者姓名功能（建议在双栏模式下使用，单栏模式则默认使用第一个空格分隔姓和名，中文自动识别常见姓） <br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.3 当所有作者处于同一行时进行修改 <br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.4 删除名里的短横线（建议在双栏模式下使用，单栏模式则默认使用最后一个空格分隔姓和名） <br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.5 手动输入所有作者，并自定义是双栏还是单栏<br><br>-2. 批量修改时间为ISO的YYYY-MM-DD格式<br><br>-3. 批量修改文献语言，也可以自定义<br><br>-4. 批量清空Extra字段，为了方便给条目进行注释
+dialog-close = 关闭
+
+# Date-ISO 进度提示
+date-iso-title = 日期格式化完成
+date-iso-result =
+    已更新 { $updated } 个条目，无日期 { $noDate } 个，跳过 { $skipped } 个

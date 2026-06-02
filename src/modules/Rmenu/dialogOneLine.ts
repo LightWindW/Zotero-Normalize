@@ -1,3 +1,5 @@
+import { getString } from "../../utils/locale";
+
 export async function dialogOneLine() {
     const dialogData: { [key: string | number]: any } = {
       // inputValue: "test",
@@ -15,7 +17,7 @@ export async function dialogOneLine() {
         tag: "td",
         attributes: { colspan: 7 },
         properties: {
-          innerHTML: "选择作者分隔符",
+          innerHTML: getString("dialog-oneline-separator"),
         },
         styles: {
           fontSize: "1.2em",
@@ -34,7 +36,7 @@ export async function dialogOneLine() {
         attributes: {
           for: "dialog-checkbox-single", // 修改ID避免重复
         },
-        properties: { innerHTML: "半角逗号 ," }, // 明确标签文本
+        properties: { innerHTML: getString("dialog-oneline-separator-comma") },
         styles: {
           marginRight: "0px", // 0,1之间无间隔
           textAlign: "left", // 左对齐
@@ -79,7 +81,7 @@ export async function dialogOneLine() {
         attributes: {
           for: "dialog-checkbox-double", // 修改ID避免重复
         },
-        properties: { innerHTML: "|    半角分号 ;" }, // 明确标签文本
+        properties: { innerHTML: "|    " + getString("dialog-oneline-separator-semicolon") },
         styles: {
           marginRight: "0px", // 2,3之间无间隔
           textAlign: "left", // 左对齐
@@ -124,7 +126,7 @@ export async function dialogOneLine() {
         attributes: {
           for: "dialog-checkbox-single2", // 修改ID避免重复
         },
-        properties: { innerHTML: "全角逗号 ，" }, // 明确标签文本
+        properties: { innerHTML: getString("dialog-oneline-separator-comma-fw") },
         styles: {
           // width: "100px", // 确保标签宽度足够
           marginRight: "0px", // 0,1之间无间隔
@@ -170,7 +172,7 @@ export async function dialogOneLine() {
         attributes: {
           for: "dialog-checkbox-double2", // 修改ID避免重复
         },
-        properties: { innerHTML: "|    全角分号 ；" }, // 明确标签文本
+        properties: { innerHTML: "|    " + getString("dialog-oneline-separator-semicolon-fw") },
         styles: {
           marginRight: "0px", // 2,3之间无间隔
           textAlign: "left", // 左对齐
@@ -215,7 +217,7 @@ export async function dialogOneLine() {
         attributes: {
           for: "dialog-checkbox-other", // 修改ID避免重复
         },
-        properties: { innerHTML: "其他：" }, // 明确标签文本
+        properties: { innerHTML: getString("dialog-oneline-separator-other") },
         styles: {
           marginRight: "0px", // 4,5之间无间隔
           textAlign: "left", // 左对齐
@@ -246,7 +248,7 @@ export async function dialogOneLine() {
         tag: "td",
         attributes: { colspan: 7 },
         properties: {
-          innerHTML: "选择单/双栏",
+          innerHTML: getString("dialog-oneline-column"),
         },
         styles: {
           fontSize: "1.2em",
@@ -265,7 +267,7 @@ export async function dialogOneLine() {
         attributes: {
           for: "dialog-checkbox-single", // 修改ID避免重复
         },
-        properties: { innerHTML: "单栏：姓名合并" }, // 明确标签文本
+        properties: { innerHTML: getString("dialog-oneline-column-single") },
         styles: {
           textAlign: "left", // 左对齐
         },
@@ -309,7 +311,7 @@ export async function dialogOneLine() {
         attributes: {
           for: "dialog-checkbox-double", // 修改ID避免重复
         },
-        properties: { innerHTML: "|    双栏：姓名分开" }, // 明确标签文本
+        properties: { innerHTML: "|    " + getString("dialog-oneline-column-double") },
         styles: {
           textAlign: "left", // 左对齐
         },
@@ -349,11 +351,11 @@ export async function dialogOneLine() {
         false,
       )
 
-      .addButton("确认", "confirm")
-      .addButton("取消", "cancel")
+      .addButton(getString("dialog-confirm"), "confirm")
+      .addButton(getString("dialog-cancel"), "cancel")
 
       .setDialogData(dialogData)
-      .open("所有作者在一行修改"); //对话框标题
+      .open(getString("dialog-oneline-title"));
 
     // 将 dialogHelper 存储到 addon.data.dialog 中
     addon.data.dialog = dialogHelper;

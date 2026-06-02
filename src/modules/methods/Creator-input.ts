@@ -37,7 +37,6 @@ export async function CreatorInput(
     .filter((line) => line.length > 0);
 
   if (lines.length === 0) {
-    Zotero.alert(Zotero.getMainWindow(), "提示", "请输入作者信息！");
     return;
   }
 

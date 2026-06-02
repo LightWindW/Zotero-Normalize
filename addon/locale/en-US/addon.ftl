@@ -1,5 +1,3 @@
-startup-begin = Addon is loading
-startup-finish = Addon is ready
 menuitem-label = Addon Template: Helper Examples
 menupopup-label = Normalize
 menuitem-submenulabel = Addon Template
@@ -28,3 +26,43 @@ prefs-table-title = Title
 prefs-table-detail = Detail
 tabpanel-lib-tab-label = Lib Tab
 tabpanel-reader-tab-label = Reader Tab
+
+# Dialog: Manual Input Authors
+dialog-input-title = Enter Author Names
+dialog-input-column = Select Column Mode
+dialog-input-column-single = Single Column: Merge Names
+dialog-input-column-double = Double Column: Separate Names
+dialog-input-name-order = Select Name Order
+dialog-input-name-order-note = Note: Chinese names can ignore this option, English names require order selection
+dialog-input-surname-first = Surname + Given (Surname First)
+dialog-input-given-first = Given + Surname (Given First)
+dialog-input-enter-authors = Enter All Authors
+dialog-input-enter-authors-hint = Chinese names do not need separators, use spaces between English surname and given name<br>Different lines for different authors
+dialog-input-placeholder = Enter authors...
+
+# Dialog: All Authors in One Line
+dialog-oneline-title = Edit All Authors in One Line
+dialog-oneline-separator = Select Author Separator
+dialog-oneline-separator-comma = Half-width Comma ,
+dialog-oneline-separator-semicolon = Half-width Semicolon ;
+dialog-oneline-separator-comma-fw = Full-width Comma ，
+dialog-oneline-separator-semicolon-fw = Full-width Semicolon ；
+dialog-oneline-separator-other = Other:
+dialog-oneline-column = Select Column Mode
+dialog-oneline-column-single = Single Column: Merge Names
+dialog-oneline-column-double = Double Column: Separate Names
+
+# Common Dialog Buttons
+dialog-confirm = Confirm
+dialog-cancel = Cancel
+
+# Dialog: Help
+dialog-help-title = Normalize Help
+dialog-help-heading = Help
+dialog-help-content = This plugin is designed to batch and manually edit item metadata. Please note that in Zotero's two-field format, it is surname + given name; in single-field mode, it is given name + space + surname.<br><br>Features:<br><br>-1. Author name correction<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.1 Merge and split author names<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Use different methods for Chinese and English literature<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Two-field: surname first; Single-field: Chinese keeps surname-first, English keeps given-first<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.2 Switch author name order (recommended in two-field mode; single-field uses first space to split)<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.3 Edit when all authors are in one line<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.4 Remove hyphens in given names<br><br>&nbsp;&nbsp;&nbsp;&nbsp;-1.5 Manually enter all authors with column mode selection<br><br>-2. Batch date format to ISO YYYY-MM-DD<br><br>-3. Batch edit language, customizable<br><br>-4. Batch clear Extra field for annotations
+dialog-close = Close
+
+# Date-ISO ProgressWindow
+date-iso-title = Date Formatting Complete
+date-iso-result =
+    Updated { $updated } items, { $noDate } without date, { $skipped } skipped

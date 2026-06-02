@@ -18,8 +18,8 @@ Zotero-Normalize 是一个 Zotero 插件（bootstrap 架构），用于批量规
 
 - **RMenu.ts** — `RMenu` 装饰器，为菜单注册和 dialog 函数提供统一的 try/catch 包装。
 - **UIRMenu.ts** — 右键菜单注册。`registerRightClickMenuPopup()` 使用 `Zotero.MenuManager.registerMenu()`（Zotero 8 原生 API），包含作者姓名处理、日期格式化、语言修改、Extra 清空等功能。
-- **dialogInput.ts** — 「手动输入作者」对话框（单/双栏 + 姓名顺序选择）。
-- **dialogOneLine.ts** — 「所有作者在一行修改」对话框（分隔符 + 单/双栏选择）。
+- **dialogInput.ts** — 「手动输入作者」对话框（单/双栏 + 姓名顺序选择）。UI 文本通过 `getString()` 从 `addon.ftl` 获取，支持中英文自动切换。
+- **dialogOneLine.ts** — 「所有作者在一行修改」对话框（分隔符 + 单/双栏选择）。同上，UI 文本全本地化。
 - **dialogLanguage.ts** — 「批量修改语言」对话框（zh / en / 自定义）。
 - **dialogHelp.ts** — 「使用说明」对话框。
 

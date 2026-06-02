@@ -1,3 +1,5 @@
+import { getString } from "../../utils/locale";
+
 export async function dialogInput() {
     const dialogData: { [key: string | number]: any } = {
       // inputValue: "test",
@@ -14,7 +16,7 @@ export async function dialogInput() {
     const dialogHelper = new ztoolkit.Dialog(10, 2)
       .addCell(0, 0, {
         tag: "h2",
-        properties: { innerHTML: "选择单/双栏" },
+        properties: { innerHTML: getString("dialog-input-column") },
       })
 
       .addCell(1, 0, {
@@ -23,7 +25,7 @@ export async function dialogInput() {
         attributes: {
           for: "dialog-checkbox-single", // 修改ID避免重复
         },
-        properties: { innerHTML: "单栏：姓名合并" }, // 明确标签文本
+        properties: { innerHTML: getString("dialog-input-column-single") },
       })
       .addCell(
         1,
@@ -60,7 +62,7 @@ export async function dialogInput() {
         attributes: {
           for: "dialog-checkbox-double", // 修改ID避免重复
         },
-        properties: { innerHTML: "双栏：姓名分开" }, // 明确标签文本
+        properties: { innerHTML: getString("dialog-input-column-double") },
       })
 
       .addCell(
@@ -95,14 +97,13 @@ export async function dialogInput() {
 
       .addCell(3, 0, {
         tag: "h2",
-        properties: { innerHTML: "选择姓名前后关系" },
+        properties: { innerHTML: getString("dialog-input-name-order") },
       })
       .addCell(4, 0, {
         tag: "label",
         namespace: "html",
         properties: {
-          innerHTML:
-            "注：中文姓名可忽略此选项，英文姓名需要明确姓名前后关系<br><br>",
+          innerHTML: getString("dialog-input-name-order-note"),
         },
         styles: {
           textAlign: "left",
@@ -118,7 +119,7 @@ export async function dialogInput() {
         attributes: {
           for: "dialog-checkbox-zh", // 修改ID避免重复
         },
-        properties: { innerHTML: "姓+名（姓前名后）" }, // 明确标签文本
+        properties: { innerHTML: getString("dialog-input-surname-first") },
       })
       .addCell(
         5,
@@ -155,7 +156,7 @@ export async function dialogInput() {
         attributes: {
           for: "dialog-checkbox-en", // 修改ID避免重复
         },
-        properties: { innerHTML: "名+姓（名前姓后）" }, // 明确标签文本
+        properties: { innerHTML: getString("dialog-input-given-first") },
       })
 
       .addCell(
@@ -189,15 +190,14 @@ export async function dialogInput() {
       )
       .addCell(7, 0, {
         tag: "h2",
-        properties: { innerHTML: "手动输入所有作者" },
+        properties: { innerHTML: getString("dialog-input-enter-authors") },
       })
 
       .addCell(8, 0, {
         tag: "label",
         namespace: "html",
         properties: {
-          innerHTML:
-            "中文姓名不用分隔，英文姓和名之间用 空格 分隔<br>不同行分隔不同作者<br><br>",
+          innerHTML: getString("dialog-input-enter-authors-hint"),
         },
         styles: {
           textAlign: "left",
@@ -219,7 +219,7 @@ export async function dialogInput() {
             "data-prop": "value", // 绑定到 value 属性
             rows: "4", // 设置行数（可选）
             cols: "40", // 设置列数（可选）
-            placeholder: "输入作者...", // 提示文本（可选）
+            placeholder: getString("dialog-input-placeholder"),
           },
           styles: {
             height: "120px", // 固定高度
@@ -230,11 +230,11 @@ export async function dialogInput() {
         false,
       )
 
-      .addButton("确认", "confirm")
-      .addButton("取消", "cancel")
+      .addButton(getString("dialog-confirm"), "confirm")
+      .addButton(getString("dialog-cancel"), "cancel")
 
       .setDialogData(dialogData)
-      .open("手动输入作者名"); //对话框标题
+      .open(getString("dialog-input-title"));
     addon.data.dialog = dialogHelper;
     await dialogData.unloadLock.promise;
     addon.data.dialog = undefined;
